@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "177562941671",
+    "project_id": "trippify-426405",
+    "storage_bucket": "trippify-426405.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177562941671:android:042a5cc6e685949093ca42",
+        "android_client_info": {
+          "package_name": "com.trippify.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDabgPMwsYArtnc0xcX3wbdbN0Qfa6z4KM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
