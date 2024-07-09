@@ -1,18 +1,11 @@
-import 'dart:developer';
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:trippify/features/home/views/home_screen.dart';
 import 'package:trippify/features/trips/view_models/trip.viewmodel.dart';
 import 'package:trippify/utils/colors.dart';
 import 'package:trippify/utils/spacing.dart';
 import 'package:trippify/utils/styles.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
 
 class CreateTripScreen extends StatefulWidget {
   const CreateTripScreen({super.key});

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:trippify/features/splash/splash_screen.dart';
 import 'package:trippify/utils/spacing.dart';
 import 'package:trippify/utils/styles.dart';
-import '../shared/helpers/shared_preferences_manager.dart';
+import '../../shared/helpers/shared_preferences_manager.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});

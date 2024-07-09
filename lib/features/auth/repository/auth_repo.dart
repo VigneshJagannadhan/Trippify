@@ -1,12 +1,5 @@
-import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../../home/views/home_screen.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
-import '../models/user_model.dart';
 
 abstract class AuthRepo {
   Future<UserCredential?>? loginUser({

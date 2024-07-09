@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:trippify/features/home/views/chat_body.dart';
 import 'package:trippify/features/home/views/home_screen_body.dart';
 import 'package:trippify/features/home/view_models/home.viewmodel.dart';
-import 'package:trippify/features/settings/settings_view.dart';
+import 'package:trippify/features/settings/views/settings_view.dart';
 import 'package:trippify/features/trips/views/my_trips_body.dart';
 import 'package:trippify/utils/constants.dart';
 

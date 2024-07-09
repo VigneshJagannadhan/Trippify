@@ -6,7 +6,7 @@ import 'package:trippify/features/home/repository/home_repo.dart';
 import 'package:trippify/features/home/view_models/home.viewmodel.dart';
 import 'package:trippify/features/trips/repository/trip_repo.dart';
 import 'package:trippify/features/trips/view_models/trip.viewmodel.dart';
-import '../features/maps/providers/location_provider.dart';
+import '../features/maps/view_models/location_provider.dart';
 import '../locator.dart';
 
 List<SingleChildWidget> appProviders() {

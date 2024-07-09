@@ -158,7 +158,7 @@ class AuthViewModel extends LoadingViewModel {
           bodyText: message,
           lottieUrl: lottieUrl,
           onPressed: () {
-            print('OK button pressed');
+            log('OK button pressed');
           },
         );
       },
