@@ -1,14 +1,11 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trippify/features/splash/splash_screen.dart';
-import 'package:trippify/utils/sp_keys.dart';
 import 'package:trippify/utils/spacing.dart';
 import 'package:trippify/utils/styles.dart';
+import '../shared/helpers/shared_preferences_manager.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -28,10 +25,7 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((e) async {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      userId = preferences.getString(sp_user_id);
-    });
+    userId = SharedPreferencesManager.getUserId();
   }
 
   @override

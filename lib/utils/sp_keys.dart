@@ -1,1 +1,1 @@
-const String sp_user_id = 'sp_user_id';
+const String spUserId = 'sp_user_id';

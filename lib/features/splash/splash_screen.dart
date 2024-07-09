@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trippify/features/auth/auth_screen.dart';
-import 'package:trippify/features/home/home_screen.dart';
+import 'package:trippify/features/auth/views/auth_screen.dart';
+import 'package:trippify/features/home/views/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
           if (mounted) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const AuthScreen(),
+                builder: (context) => AuthScreen(),
               ),
             );
           }
@@ -35,7 +35,6 @@ class _SplashScreenState extends State<SplashScreen> {
           }
         }
       });
-      // await Future.delayed(const Duration(seconds: 3));
     });
   }
 

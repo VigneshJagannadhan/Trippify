@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trippify/utils/sp_keys.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trippify/utils/spacing.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/styles.dart';
+import '../../shared/helpers/shared_preferences_manager.dart';
 
 class TripItemWidget extends StatelessWidget {
   TripItemWidget({
@@ -30,20 +31,20 @@ class TripItemWidget extends StatelessWidget {
     return Card(
         color: colorFFFFFFFF,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(6.0),
+          padding: EdgeInsets.all(6.0.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
                   Container(
-                    height: 200,
+                    height: 200.h,
                     decoration: BoxDecoration(
                       color: colorFFFFFFFF,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       image: DecorationImage(
                         image: NetworkImage(imageUrl),
                         fit: BoxFit.cover,
@@ -83,23 +84,19 @@ class TripItemWidget extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        gv20,
                         Text(
                           name,
-                          style: AppStyles.tsFS23C00W400,
+                          style: AppStyles.tsFS20C00W400,
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        gv05,
                         Row(
                           children: [
                             Icon(
@@ -107,32 +104,26 @@ class TripItemWidget extends StatelessWidget {
                               size: 18,
                               color: borderColor,
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            gv10,
                             SizedBox(
-                              width: 200,
+                              width: 170.w,
                               child: Text(
                                 location,
-                                style: AppStyles.tsFS16CGreyW400,
+                                style: AppStyles.tsFS14CGreyW400,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        gv10,
                         Text(
                           description,
                           style: AppStyles.tsFS12C00W600,
                         ),
-                        const SizedBox(
-                          height: 20,
-                        )
+                        gv20,
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 40.h,
                       child: ElevatedButton(
                         style: hasJoined
                             ? ElevatedButton.styleFrom(
@@ -150,7 +141,7 @@ class TripItemWidget extends StatelessWidget {
                           isYourJob
                               ? 'Edit Trip'
                               : (hasJoined ? 'Exit Trip' : 'Join Trip'),
-                          style: AppStyles.tsFS16CFFW600,
+                          style: AppStyles.tsFS14CFFW600,
                         ),
                       ),
                     )
@@ -163,8 +154,7 @@ class TripItemWidget extends StatelessWidget {
   }
 
   Future<void> joinOrExitTrip() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final userId = preferences.getString(sp_user_id);
+    String? userId = SharedPreferencesManager.getUserId();
     DocumentReference tripRef =
         FirebaseFirestore.instance.collection('trips').doc(docId);
     DocumentReference chatRef =

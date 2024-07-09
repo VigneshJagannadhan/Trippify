@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trippify/features/trips/views/create_trips_screen.dart';
 import 'package:trippify/features/trips/widgets/trip_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../utils/constants.dart';
-import '../../utils/styles.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/styles.dart';
 
 class HomeScreenBody extends StatelessWidget {
   HomeScreenBody({
@@ -28,7 +27,7 @@ class HomeScreenBody extends StatelessWidget {
         return Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding: EdgeInsets.symmetric(horizontal: 15.0.w),
               child: ListView.builder(
                 itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
@@ -48,11 +47,11 @@ class HomeScreenBody extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 10,
-              right: 20,
+              bottom: 10.h,
+              right: 20.w,
               child: SizedBox(
-                width: 190,
-                height: 60,
+                width: 190.w,
+                height: 60.h,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -65,11 +64,11 @@ class HomeScreenBody extends StatelessWidget {
                     children: [
                       Text(
                         'Create Trip',
-                        style: AppStyles.tsFS16CFFW600,
+                        style: AppStyles.tsFS14CFFW600,
                       ),
                       SvgPicture.asset(
                         AppConstants.createTripSvg,
-                        width: 50,
+                        width: 50.w,
                       ),
                     ],
                   ),
