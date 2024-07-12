@@ -1,102 +1,123 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trippify/utils/constants.dart';
 import 'package:trippify/utils/spacing.dart';
+import '../../../shared/helpers/shared_preferences_manager.dart';
 import '../../../utils/colors.dart';
+import '../../../utils/strings.dart';
 import '../../../utils/styles.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
 
 class TripItemWidget extends StatelessWidget {
   TripItemWidget({
     super.key,
     required this.imageUrl,
     required this.name,
-    required this.location,
+    required this.startLocation,
     required this.description,
     required this.docId,
     required this.isYourJob,
     this.hasJoined = false,
   });
 
-  final String imageUrl;
-  final String name;
+  final String? imageUrl;
+  final String? name;
   final String? docId;
-  final String location;
-  final String description;
+  final String? startLocation;
+  final String? description;
   bool isYourJob;
   bool hasJoined;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        color: colorFFFFFFFF,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        child: Padding(
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28.r),
+            color: colorFFFFFFFF,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                spreadRadius: 5,
+                blurRadius: 20, // Increased blur radius
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
           padding: EdgeInsets.all(6.0.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  Container(
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                      color: colorFFFFFFFF,
-                      borderRadius: BorderRadius.circular(30.r),
-                      image: DecorationImage(
-                        image: NetworkImage(imageUrl),
-                        fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25.r),
+                    child: Image(
+                      image:
+                          NetworkImage(imageUrl ?? AppConstants.dummyTripImage),
+                      fit: BoxFit.cover,
+                      height: 200.h,
+                      width: 1.sw,
+                    ),
+                  ),
+                  Positioned(
+                    right: 5.w,
+                    top: 5.h,
+                    child: CircleAvatar(
+                      radius: 20.r,
+                      backgroundColor: colorFFFFFFFF,
+                      child: const Icon(
+                        Icons.favorite,
+                        color: Colors.redAccent,
                       ),
                     ),
                   ),
-                  // isYourJob
-                  //     ? const SizedBox()
-                  //     : Positioned(
-                  //         top: 10,
-                  //         right: 10,
-                  //         child: GestureDetector(
-                  //           onTap: () async {
-                  //             isFavourite = !isFavourite;
-                  //             DocumentReference<Map<String, dynamic>> doc =
-                  //                 FirebaseFirestore.instance
-                  //                     .collection('trips')
-                  //                     .doc(docId);
-
-                  //             await doc.update({"isFavourite": isFavourite});
-                  //           },
-                  //           child: CircleAvatar(
-                  //             radius: 25,
-                  //             backgroundColor: Colors.grey.withOpacity(0.5),
-                  //             child: Icon(
-                  //               isFavourite
-                  //                   ? Icons.favorite
-                  //                   : Icons.favorite_border,
-                  //               color: isFavourite
-                  //                   ? Colors.redAccent
-                  //                   : colorFFFFFFFF,
-                  //               size: 30,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       )
+                  Positioned(
+                    left: 10.w,
+                    top: 10.h,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 7.w,
+                        vertical: 5.h,
+                      ),
+                      decoration: BoxDecoration(
+                          color: colorFFFFFFFF,
+                          borderRadius: BorderRadius.circular(15.r)),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Coming Soon',
+                            style: AppStyles.tsFS12C00W600,
+                          ),
+                          const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    gv20,
+                    SizedBox(
+                      width: 1.sw,
+                      child: Text(
+                        name ?? AppStrings.loadingText,
+                        style: AppStyles.tsFS20C00W400,
+                      ),
+                    ),
+                    gv05,
+                    Row(
                       children: [
-                        gv20,
-                        Text(
-                          name,
-                          style: AppStyles.tsFS20C00W400,
-                        ),
-                        gv05,
                         Row(
                           children: [
                             Icon(
@@ -106,51 +127,54 @@ class TripItemWidget extends StatelessWidget {
                             ),
                             gv10,
                             SizedBox(
-                              width: 170.w,
+                              width: 165.w,
                               child: Text(
-                                location,
+                                startLocation ?? AppStrings.loadingText,
                                 style: AppStyles.tsFS14CGreyW400,
                               ),
                             ),
                           ],
                         ),
-                        gv10,
-                        Text(
-                          description,
-                          style: AppStyles.tsFS12C00W600,
-                        ),
-                        gv20,
+                        SizedBox(
+                          height: 40.h,
+                          child: ElevatedButton(
+                            style: hasJoined
+                                ? ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red)
+                                : ElevatedButton.styleFrom(),
+                            onPressed: () async {
+                              if (isYourJob) {
+                                // handle edit trip here
+                              } else {
+                                // handle join trip here
+                                await joinOrExitTrip();
+                              }
+                            },
+                            child: Text(
+                              isYourJob
+                                  ? 'Edit Trip'
+                                  : (hasJoined ? 'Exit Trip' : 'Join Trip'),
+                              style: AppStyles.tsFS14CFFW600,
+                            ),
+                          ),
+                        )
                       ],
                     ),
-                    SizedBox(
-                      height: 40.h,
-                      child: ElevatedButton(
-                        style: hasJoined
-                            ? ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red)
-                            : ElevatedButton.styleFrom(),
-                        onPressed: () async {
-                          if (isYourJob) {
-                            // handle edit trip here
-                          } else {
-                            // handle join trip here
-                            await joinOrExitTrip();
-                          }
-                        },
-                        child: Text(
-                          isYourJob
-                              ? 'Edit Trip'
-                              : (hasJoined ? 'Exit Trip' : 'Join Trip'),
-                          style: AppStyles.tsFS14CFFW600,
-                        ),
-                      ),
-                    )
+                    gv10,
+                    Text(
+                      description ?? AppStrings.loadingText,
+                      style: AppStyles.tsFS12C00W600,
+                    ),
+                    gv20,
                   ],
                 ),
               ),
             ],
           ),
-        ));
+        ),
+        gv10,
+      ],
+    );
   }
 
   Future<void> joinOrExitTrip() async {

@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:trippify/features/home/repository/home_repo.dart';
-import 'package:trippify/features/shared/view_models/loading.viewmodel.dart';
+
+import '../../../shared/view_models/loading.viewmodel.dart';
+import '../repository/home_repo.dart';
 
 class HomeViewModel extends LoadingViewModel {
   HomeViewModel({

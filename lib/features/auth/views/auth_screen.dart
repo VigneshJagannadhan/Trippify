@@ -9,6 +9,7 @@ import '../../../utils/styles.dart';
 import '../../../utils/validators.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const String route = 'auth';
   AuthScreen({super.key, this.isLogin = true});
   bool isLogin;
 
@@ -142,7 +143,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       )
                                     : await viewModel.registerUser(
                                         name: nameController.text,
-                                        email: nameController.text,
+                                        email: emailController.text,
                                         password: passwordController.text,
                                         context: context,
                                       );

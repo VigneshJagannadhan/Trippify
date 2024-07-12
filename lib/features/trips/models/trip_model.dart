@@ -1,7 +1,7 @@
 class TripModel {
   String? createdDate;
   String? imageUrl;
-  List<String>? joinedUsers;
+  List<dynamic>? joinedUsers;
   String? tripEnd;
   String? tripEndTime;
   String? tripStart;

@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:trippify/utils/colors.dart';
+import 'package:trippify/utils/spacing.dart';
+import 'package:trippify/utils/styles.dart';
 
 class ChatBody extends StatefulWidget {
-  ChatBody({super.key, this.userId, required this.stream});
+  ChatBody({super.key, required this.stream});
 
   Stream<QuerySnapshot<Object?>>? stream;
-  final String? userId;
 
   @override
   State<ChatBody> createState() => _ChatBodyState();
@@ -66,10 +70,57 @@ class _ChatBodyState extends State<ChatBody> {
       stream: widget.stream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) return const Text('Loading...');
-        return ListView.builder(
-          itemCount: snapshot.data?.docs.length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(snapshot.data?.docs[index]['trip_name']),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              gv70,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Text(
+                  'My Chats',
+                  style: AppStyles.tsFS24C00W400,
+                ),
+              ),
+              gv20,
+              Column(
+                children:
+                    List.generate(snapshot.data?.docs.length ?? 0, (index) {
+                  final tripName = snapshot.data?.docs[index]['trip_name'];
+                  final lastMessage =
+                      snapshot.data?.docs[index]['messages'][0]['message'];
+                  final lastMessageTime = DateTime.parse(snapshot
+                          .data?.docs[index]['messages'][0]['created_time'])
+                      .toLocal();
+                  final time = DateFormat('hh:mm').format(lastMessageTime);
+                  return ListTile(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 05.h),
+                    leading: CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(
+                        snapshot.data?.docs[index]['image_url'],
+                      ),
+                    ),
+                    title: Text(tripName, style: AppStyles.tsFS15C00W500),
+                    subtitle: Text(
+                      lastMessage,
+                      style: AppStyles.tsFS12CGreyW400,
+                    ),
+                    trailing: Column(
+                      children: [
+                        Text(time, style: AppStyles.tsFS10CGreyW500),
+                        gv05,
+                        CircleAvatar(
+                            radius: 10,
+                            backgroundColor: primaryColor,
+                            child: Text('1', style: AppStyles.tsFS12CFFW600)),
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ],
           ),
         );
 

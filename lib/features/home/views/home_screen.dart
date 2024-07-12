@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,11 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:trippify/features/home/views/chat_body.dart';
 import 'package:trippify/features/home/views/home_screen_body.dart';
 import 'package:trippify/features/home/view_models/home.viewmodel.dart';
+import 'package:trippify/features/home/widgets/home_body_loading.dart';
 import 'package:trippify/features/settings/views/settings_view.dart';
 import 'package:trippify/features/trips/views/my_trips_body.dart';
+import 'package:trippify/utils/colors.dart';
 import 'package:trippify/utils/constants.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String route = 'home';
   const HomeScreen({super.key});
 
   @override
@@ -41,23 +43,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(),
+        backgroundColor: colorFFFFFFFF,
         body: Consumer<HomeViewModel>(builder: (context, provider, child) {
           if (provider.isLoading) {
-            return child ?? const SizedBox();
+            return const LoadingWidget();
           }
           return TabBarView(
             children: [
               HomeScreenBody(
                 stream: viewModel.allTripsModel,
-                userId: userId,
               ),
               ChatBody(
                 stream: viewModel.myChatModel,
-                userId: userId,
               ),
               MyTripsBody(
-                userId: userId ?? '',
                 stream: viewModel.myTripsModel,
               ),
               const SettingsView(),
@@ -90,19 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
           indicatorColor: Colors.red,
         ),
       ),
-    );
-  }
-}
-
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CupertinoActivityIndicator(),
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
+import '../../../shared/helpers/shared_preferences_manager.dart';
 
 abstract class HomeRepo {
   Future<Stream<QuerySnapshot<Object?>>> fetchAllTrips();
@@ -22,7 +24,8 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Stream<QuerySnapshot<Object?>>> fetchMyChats() async {
     String? userId = SharedPreferencesManager.getUserId();
-
+    log(userId.toString());
+    log(DateTime.now().toUtc().toString());
     Stream<QuerySnapshot<Object?>> chatsStream = FirebaseFirestore.instance
         .collection('chat')
         .where('joined_users', arrayContains: userId)

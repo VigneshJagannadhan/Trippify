@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:trippify/features/home/views/home_screen.dart';
 import 'package:trippify/features/trips/view_models/trip.viewmodel.dart';
 import 'package:trippify/utils/colors.dart';
 import 'package:trippify/utils/spacing.dart';
 import 'package:trippify/utils/styles.dart';
+
+import '../../home/widgets/home_body_loading.dart';
 
 class CreateTripScreen extends StatefulWidget {
   const CreateTripScreen({super.key});
@@ -138,10 +139,10 @@ class _CreateTripScreenState extends State<CreateTripScreen> {
                   child: ElevatedButton(
                     onPressed: () async {
                       tripViewmodel.tripName = tripNameController.text;
-                      tripViewmodel.tripStartPoint = tripNameController.text;
-                      tripViewmodel.tripStartTime = tripNameController.text;
-                      tripViewmodel.tripEndPoint = tripNameController.text;
-                      tripViewmodel.tripName = tripNameController.text;
+                      tripViewmodel.tripStartPoint =
+                          tripStartPointController.text;
+                      tripViewmodel.tripStartTime = startDate.toString();
+                      tripViewmodel.tripEndPoint = endDate.toString();
                       tripViewmodel.selectedImage = tripViewmodel.selectedImage;
                       return await tripViewmodel.createTrip(context);
                     },

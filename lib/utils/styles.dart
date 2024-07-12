@@ -27,6 +27,19 @@ class AppStyles {
         fontSize: 12.sp,
         fontWeight: FontWeight.w500,
       );
+
+  static TextStyle get tsFS12CGreyW400 => GoogleFonts.montserrat(
+        color: Colors.grey,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+      );
+
+  static TextStyle get tsFS10CGreyW500 => GoogleFonts.montserrat(
+        color: Colors.grey,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w500,
+      );
+
   static TextStyle get tsFS12CFFW600 => GoogleFonts.montserrat(
         color: colorFFFFFFFF,
         fontSize: 12.sp,
@@ -61,6 +74,13 @@ class AppStyles {
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
       );
+
+  static TextStyle get tsFS15C00W500 => GoogleFonts.montserrat(
+        color: color00000000,
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w500,
+      );
+
   static TextStyle get tsFS14CGreyW400 => GoogleFonts.montserrat(
         color: Colors.grey,
         fontSize: 14.sp,
@@ -103,9 +123,15 @@ class AppStyles {
         fontWeight: FontWeight.w400,
       );
 
-  static TextStyle get tsFS24C00W300 => GoogleFonts.montserrat(
+  static TextStyle get tsFS22C00W300 => GoogleFonts.montserrat(
         color: color00000000,
         fontSize: 22.sp,
         fontWeight: FontWeight.w300,
+      );
+
+  static TextStyle get tsFS24C00W400 => GoogleFonts.montserrat(
+        color: color00000000,
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w400,
       );
 }

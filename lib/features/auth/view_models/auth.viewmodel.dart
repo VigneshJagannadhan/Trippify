@@ -3,11 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trippify/features/auth/repository/auth_repo.dart';
-import 'package:trippify/features/shared/view_models/loading.viewmodel.dart';
 import 'package:trippify/utils/constants.dart';
+import '../../../shared/helpers/shared_preferences_manager.dart';
+import '../../../shared/view_models/loading.viewmodel.dart';
+import '../../../shared/widgets/general_error_popup.dart';
 import '../../home/views/home_screen.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
-import '../../shared/widgets/general_error_popup.dart';
 import '../models/user_model.dart';
 
 class AuthViewModel extends LoadingViewModel {
@@ -76,16 +76,22 @@ class AuthViewModel extends LoadingViewModel {
           builder: (context) => const HomeScreen(),
         ),
       );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        log('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        log('The account already exists for that email.');
-      }
     } catch (e) {
-      log(e.toString());
+      handleUserRegistationErrors(e);
     }
     isLoading = false;
+  }
+
+  void handleUserRegistationErrors(Object e) {
+    if (e.toString().contains('weak-password')) {
+      log('The password provided is too weak.');
+    } else if (e.toString().contains('email-already-in-use')) {
+      log('The account already exists for that email.');
+    } else if (e.toString().contains('firebase_auth/invalid-email')) {
+      log('Invalid-email');
+    } else {
+      log('Registration Error : $e.toString()');
+    }
   }
 
   Future<void> loginUser({
@@ -123,6 +129,8 @@ class AuthViewModel extends LoadingViewModel {
           lottieUrl = AppConstants.wrongPasswordLottie;
           break;
         default:
+          message = e.message ?? 'Please try again';
+          lottieUrl = AppConstants.commonErrorsLottie;
       }
 
       showGeneralPopup(

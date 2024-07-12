@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:trippify/utils/colors.dart';
 import 'package:trippify/utils/styles.dart';
 
-ThemeData appTheme() {
-  return ThemeData(
-      primaryColor: primaryColor,
-      indicatorColor: primaryColor,
-      inputDecorationTheme: inputDecorationTheme(),
-      elevatedButtonTheme: elevatedButtonThemeData(),
-      appBarTheme: appBarTheme());
-}
+ThemeData get appTheme => ThemeData(
+    primaryColor: primaryColor,
+    indicatorColor: primaryColor,
+    inputDecorationTheme: inputDecorationTheme(),
+    elevatedButtonTheme: elevatedButtonThemeData(),
+    appBarTheme: appBarTheme());
 
 AppBarTheme appBarTheme() => const AppBarTheme();
 

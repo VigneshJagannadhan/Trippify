@@ -1,10 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:trippify/features/auth/views/auth_screen.dart';
 import 'package:trippify/features/home/views/home_screen.dart';
+import 'package:trippify/utils/constants.dart';
+import 'package:trippify/utils/styles.dart';
+
+import '../../utils/spacing.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String route = 'splash';
   const SplashScreen({super.key});
 
   @override
@@ -16,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((v) async {
+      await Future.delayed(const Duration(seconds: 2));
       FirebaseAuth.instance.authStateChanges().listen((User? user) {
         if (user == null) {
           if (mounted) {
@@ -40,19 +48,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.travel_explore,
-              size: 50,
-            ),
             SizedBox(
-              height: 100,
+                height: 1.h,
+                width: 1.sw,
+                child: Lottie.asset(AppConstants.splashScreenLottie4)),
+            gv50,
+            Text(
+              'Trippify',
+              style: AppStyles.tsFS50CPW600,
             ),
-            CupertinoActivityIndicator(),
+            gv50,
+            const CupertinoActivityIndicator(),
           ],
         ),
       ),

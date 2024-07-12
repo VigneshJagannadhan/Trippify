@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../shared/helpers/shared_preferences_manager.dart';
+import '../../../shared/view_models/loading.viewmodel.dart';
 import '../models/trip_model.dart';
-import '../../shared/helpers/shared_preferences_manager.dart';
-import '../../shared/view_models/loading.viewmodel.dart';
 import '../repository/trip_repo.dart';
 
 class TripViewmodel extends LoadingViewModel {
