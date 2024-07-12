@@ -14,7 +14,7 @@ Trippify is a travel application built using Flutter, integrated with Firebase f
 
 ![trippify-gp-1](https://github.com/user-attachments/assets/ce184016-8a59-4975-b797-e894d66ab028)
 
-![trippify-gp-2](https://github.com/user-attachments/assets/b3d40067-4e98-4c30-a301-05f4238f8c47)
+![trippify-gp-2](https://github.com/user-attachments/assets/a8ee50d1-c4da-47a7-99f1-6391ae8607a5)
 
 ## Installation
 
