@@ -1,8 +1,7 @@
-![login](https://github.com/user-attachments/assets/23db6344-b0b0-4683-b2ca-ce499e8a7ff6)# Trippify
+# Trippify
 
 Trippify is a travel application built using Flutter, integrated with Firebase for backend services. It allows users to register, create/join trips, and engage in group chats related to their trips.
 
-![Trippify App Screenshot](link_to_screenshot)
 
 ## Features
 
@@ -13,23 +12,9 @@ Trippify is a travel application built using Flutter, integrated with Firebase f
 
 ## Screenshots
 
-- Login Screen
-  ![Login Screen](![login](https://github.com/user-attachments/assets/d22e4eb9-15b7-428c-a46e-6a03c3c95724))
+![trippify-gp-1](https://github.com/user-attachments/assets/ce184016-8a59-4975-b797-e894d66ab028)
 
-- Signup Screen
-  ![Signup Screen](![signup](https://github.com/user-attachments/assets/27eb36e7-c6a3-4975-bb7d-e90159d9b74f))
-
-- Home Screen
-  ![Home Screen](![home](https://github.com/user-attachments/assets/9e04300a-e05d-4a8f-ba6d-f917f1b6e9aa))
-
-
-
-
-- Chat Screen
-  ![Chat Screen](![chat](https://github.com/user-attachments/assets/a9a5ef8a-b820-4d31-8680-1a24ce8d893a))
-
-- My Trips Screen
-  ![My Trips Screen](![my_trips](https://github.com/user-attachments/assets/1c45d367-0747-46ba-8df2-19ba92f6c703))
+![trippify-gp-2](https://github.com/user-attachments/assets/b3d40067-4e98-4c30-a301-05f4238f8c47)
 
 ## Installation
 
